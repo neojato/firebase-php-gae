@@ -1,0 +1,30 @@
+{
+    "name": "austinallover/firebase-php-gae",
+    "description": "GAE Firebase PHP Client",
+	"homepage": "https://github.com/AustinAllover/firebase-php-gae",
+	"keywords": [
+		"firebase",
+		"REST",
+		"wrapper",
+		"GAE",
+		"Google App Engine"
+	],
+	"version": "1.0.0",
+    "license": "MIT",
+    "authors": [
+		{
+			"name": "Tamas Kalman",
+			"email": "ktamas77@gmail.com"
+		},
+		{
+			"name": "Austin Oliver",
+			"email": "austinallover@gmail.com"
+		}
+    ],
+    "autoload": {
+      "classmap": ["src"]
+    },
+    "require": {
+		"php": ">=5.3.0"
+	}
+}
