@@ -1,5 +1,5 @@
 <?php
-namespace DataService;
+namespace Firebase;
 
 /**
  * Interface FirebaseInterface
