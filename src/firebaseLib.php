@@ -1,5 +1,7 @@
 <?php
-namespace DataService;
+namespace Firebase;
+
+require_once __DIR__ . '/firebaseInterface.php';
 
 use \Exception;
 
@@ -9,7 +11,6 @@ use \Exception;
  * @author Tamas Kalman <ktamas77@gmail.com>
  * @url    https://github.com/ktamas77/firebase-php/
  * @link   https://www.firebase.com/docs/rest-api.html
- *
  */
 
 /**
@@ -17,7 +18,6 @@ use \Exception;
  *
  * @author Tamas Kalman <ktamas77@gmail.com>
  * @link   https://www.firebase.com/docs/rest-api.html
- *
  */
 class FirebaseLib implements FirebaseInterface
 {
@@ -35,10 +35,6 @@ class FirebaseLib implements FirebaseInterface
     {
         if ($baseURI == '') {
             trigger_error('You must provide a baseURI variable.', E_USER_ERROR);
-        }
-
-        if (!extension_loaded('curl')) {
-            trigger_error('Extension CURL is not loaded.', E_USER_ERROR);
         }
 
         $this->setBaseURI($baseURI);
@@ -82,7 +78,6 @@ class FirebaseLib implements FirebaseInterface
         $url = $this->_baseURI;
         $path = ltrim($path, '/');
         $auth = ($this->_token == '') ? '' : '?auth=' . $this->_token;
-        
         return $url . $path . '.json' . $auth;
     }
 
@@ -103,13 +98,13 @@ class FirebaseLib implements FirebaseInterface
      * HTTP 200: Ok
      *
      * @param string $path Path
-     * @param mixed  $data Data
+     * @param mixed $data Data
      *
      * @return array Response
      */
     public function set($path, $data)
     {
-      return $this->_writeData($path, $data, 'PUT');
+        return $this->_writeData($path, $data, 'PUT');
     }
 
     /**
@@ -117,13 +112,13 @@ class FirebaseLib implements FirebaseInterface
      * HTTP 200: Ok
      *
      * @param string $path Path
-     * @param mixed  $data Data
+     * @param mixed $data Data
      *
      * @return array Response
      */
     public function push($path, $data)
     {
-      return $this->_writeData($path, $data, 'POST');
+        return $this->_writeData($path, $data, 'POST');
     }
 
     /**
@@ -131,13 +126,13 @@ class FirebaseLib implements FirebaseInterface
      * HTTP 200: Ok
      *
      * @param string $path Path
-     * @param mixed  $data Data
+     * @param mixed $data Data
      *
      * @return array Response
      */
     public function update($path, $data)
     {
-      return $this->_writeData($path, $data, 'PATCH');
+        return $this->_writeData($path, $data, 'PATCH');
     }
 
     /**
@@ -179,17 +174,14 @@ class FirebaseLib implements FirebaseInterface
     private function _writeData($path, $data, $method = 'PUT')
     {
         $jsonData = json_encode($data);
-
         $context = [
-          'http' => [
-            'method' => $method,
-            'header' => 'Content-Type: application/json',
-            'content' => $jsonData
-          ]
+            'http' => [
+                'method' => $method,
+                'header' => 'Content-Type: application/json',
+                'content' => $jsonData
+            ]
         ];
-
         $context = stream_context_create($context);
-
         try {
             $return = file_get_contents($this->_getJsonPath($path), false, $context);
         } catch (Exception $e) {
