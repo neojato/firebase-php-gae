@@ -1,7 +1,7 @@
 {
-    "name": "austinallover/firebase-php-gae",
+    "name": "neojato/firebase-php-gae",
     "description": "GAE Firebase PHP Client",
-	"homepage": "https://github.com/AustinAllover/firebase-php-gae",
+	"homepage": "https://github.com/neojato/firebase-php-gae",
 	"keywords": [
 		"firebase",
 		"REST",
@@ -19,6 +19,10 @@
 		{
 			"name": "Austin Oliver",
 			"email": "austinallover@gmail.com"
+		},
+		{
+			"name": "Kyle Paul",
+			"email": "kpaul86+github@gmail.com"
 		}
     ],
     "autoload": {
