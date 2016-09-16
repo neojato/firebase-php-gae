@@ -32,5 +32,5 @@ Please refer to [ktamas77/firebase-php](https://github.com/ktamas77/firebase-php
 
 ```bash
 cd <your_project>
-composer require neojato/firebase-php-gae master
+composer require neojato/firebase-php-gae
 ```
